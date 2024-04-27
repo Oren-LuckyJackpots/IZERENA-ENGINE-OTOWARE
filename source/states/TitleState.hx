@@ -549,14 +549,14 @@ class TitleState extends MusicBeatState
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
 					#if PSYCH_WATERMARKS
-					createCoolText(['Psych Engine by'], 40);
+					createCoolText(['IZERENA Engine'], 40);
 					#else
 					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 					#end
 				case 4:
 					#if PSYCH_WATERMARKS
-					addMoreText('Shadow Mario', 40);
-					addMoreText('Riveren', 40);
+					addMoreText('AHHHHHHHHHHHHHH', 40);
+					addMoreText('UHHHHHHHHHHHHHH', 40);
 					#else
 					addMoreText('present');
 					#end
@@ -564,18 +564,20 @@ class TitleState extends MusicBeatState
 					deleteCoolText();
 				case 6:
 					#if PSYCH_WATERMARKS
-					createCoolText(['Not associated', 'with'], -40);
+					createCoolText(['Developed', 'By'], -40);
 					#else
 					createCoolText(['In association', 'with'], -40);
 					#end
 				case 8:
-					addMoreText('newgrounds', -40);
+					addMoreText('Oren >:)', -40);
 					ngSpr.visible = true;
 				case 9:
 					deleteCoolText();
 					ngSpr.visible = false;
 				case 10:
 					createCoolText([curWacky[0]]);
+				case 11:
+					izerenaThing('1');
 				case 12:
 					addMoreText(curWacky[1]);
 				case 13:
@@ -584,12 +586,54 @@ class TitleState extends MusicBeatState
 					addMoreText('Friday');
 				case 15:
 					addMoreText('Night');
+					izerenaThing('3');
 				case 16:
 					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 
 				case 17:
 					skipIntro();
 			}
+		}
+	}
+
+	var txt1:FlxText;
+	var txt2:FlxText;
+	var txt3:FlxText;
+	function izerenaThing(phase:String)
+	{
+		switch (phase)
+		{
+		    case '1':
+			    txt1 = new FlxText(0, 0, FlxG.width, 'こんにちは！', 48);
+			    txt1.setFormat(Paths.font("keifont.ttf"), 48, FlxColor.WHITE, CENTER);
+			    txt1.scrollFactor.set();
+			    txt1.antialiasing = ClientPrefs.data.antialiasing;
+				txt1.screenCenter(X);
+			    add(txt1);
+
+				FlxTween.tween(txt1, {y: 80}, 0.5, {ease: FlxEase.circInOut, onComplete: function(twn:FlxTween)
+				{
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						FlxTween.tween(txt1, {y: -50}, 0.5, {ease: FlxEase.circInOut});
+					});
+				}});
+
+			case '2':
+			    txt2 = new FlxText(0, 800, FlxG.width, 'ﾃﾚﾃﾃﾝﾃﾝ♪', 48);
+			    txt2.setFormat(Paths.font("keifont.ttf"), 48, FlxColor.WHITE, CENTER);
+			    txt2.scrollFactor.set();
+			    txt2.antialiasing = ClientPrefs.data.antialiasing;
+				txt2.screenCenter(X);
+			    add(txt2);
+
+				FlxTween.tween(txt2, {y: 600}, 0.5, {ease: FlxEase.circInOut, onComplete: function(twn:FlxTween)
+				{
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						FlxTween.tween(txt2, {y: 800}, 0.5, {ease: FlxEase.circInOut});
+					});
+				}});
 		}
 	}
 

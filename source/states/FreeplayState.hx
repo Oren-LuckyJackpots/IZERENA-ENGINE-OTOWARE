@@ -30,6 +30,8 @@ class FreeplayState extends MusicBeatState
 	var intendedScore:Int = 0;
 	var intendedRating:Float = 0;
 
+	public static var listening:Bool = false;
+
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
@@ -284,6 +286,7 @@ class FreeplayState extends MusicBeatState
 		{
 			if (player.playingMusic)
 			{
+				listening = false;
 				FlxG.sound.music.stop();
 				destroyFreeplayVocals();
 				FlxG.sound.music.volume = 0;
@@ -315,6 +318,7 @@ class FreeplayState extends MusicBeatState
 		{
 			if(instPlaying != curSelected && !player.playingMusic)
 			{
+				listening = true;
 				destroyFreeplayVocals();
 				FlxG.sound.music.volume = 0;
 
@@ -354,6 +358,7 @@ class FreeplayState extends MusicBeatState
 		}
 		else if (controls.ACCEPT && !player.playingMusic)
 		{
+			listening = false;
 			persistentUpdate = false;
 			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
